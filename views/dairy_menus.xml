@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+        <menuitem name="Dairy" id="dairy_root_menu"/>
+            <menuitem name="Member" id="dairy_member_menu" parent="dairy_root_menu" action="dairy_member_act_window"/>
+            <menuitem name="Cattle" id="dairy_cattle_menu" parent="dairy_root_menu" action="dairy_cattle_act_window"/>
+            <menuitem name="Configuration" id="dairy_config_menu" parent="dairy_root_menu"/>
+                <menuitem name="Cattle Type" id="cattle_type_menu" parent="dairy_config_menu" action="cattle_type_act_window"/>
+                <menuitem name="Cattle Breed" id="cattle_breed_menu" parent="dairy_config_menu" action="cattle_breed_act_window"/>
+</odoo>

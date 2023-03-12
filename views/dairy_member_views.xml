@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="dairy_member_act_window" model="ir.actions.act_window">
+            <field name="name">Member</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">dairy.member</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Add a Member
+                </p>
+            </field>
+        </record>
+
+        <record id="dairy_member_form_view" model="ir.ui.view">
+            <field name="name">dairy.member.form</field>
+            <field name="model">dairy.member</field>
+            <field name="arch" type="xml">
+                <form string="Member">
+                    <sheet>
+                        <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+                        <field name="image_1920" widget='image' class="oe_avatar"/>
+                        <div class="oe_title">
+                            <label for="name"/>
+                            <h1>
+                                <field name="name" placeholder="Title"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <label for="street" string="Address"/>
+                                <div class="o_address_format">
+                                    <field name="street" placeholder="Street..." class="o_address_street"/>
+                                    <field name="street2" placeholder="Street 2..." class="o_address_street"/>
+                                    <field name="city" placeholder="City" class="o_address_city"/>
+                                    <field name="state_id" class="o_address_state" placeholder="State"
+                                           options="{'no_open': True, 'no_quick_create': True}"
+                                           context="{'default_country_id': country_id}"/>
+                                    <field name="zip" placeholder="ZIP" class="o_address_zip"/>
+                                    <field name="country_id" placeholder="Country" class="o_address_country"
+                                           options='{"no_open": True, "no_create": True}'/>
+                                </div>
+                                <field name="phone" class="o_force_ltr" widget="phone"/>
+                                <field name="email" widget="email"/>
+                            </group>
+                            <group>
+                                <field name="birth_date"/>
+                                <field name="age" readonly="1"/>
+                                <field name="create_date" string="Joined On"/>
+                                <field name="active" invisible="1"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Account Details">
+                                <group>
+                                    <field name="bank_name"/>
+                                    <field name="branch"/>
+                                    <field name="account_no"/>
+                                    <field name="account_type" widget="radio"/>
+                                    <field name="ifsc_code"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="dairy_member_tree_view" model="ir.ui.view">
+            <field name="name">dairy.member.tree</field>
+            <field name="model">dairy.member</field>
+            <field name="arch" type="xml">
+                <tree string="Member">
+                    <field name="partner_id"/>
+                    <field name="city"/>
+                    <field name="state_id"/>
+                    <field name="zip"/>
+                    <field name="phone"/>
+                    <field name="email"/>
+                    <field name="create_date" string="Joined On"/>
+                </tree>
+            </field>
+        </record>
+
+    </data>
+</odoo>
