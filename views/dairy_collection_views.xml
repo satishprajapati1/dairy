@@ -2,6 +2,19 @@
 <odoo>
     <data>
 
+        <record id="dairy_collection_act_window" model="ir.actions.act_window">
+            <field name="name">Collection</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">dairy.collection</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    There is no examples click here to add new Collection.
+                </p>
+            </field>
+        </record>
+
+
         <record id="dairy_collection_form_view" model="ir.ui.view">
             <field name="name">dairy.collection.form</field>
             <field name="model">dairy.collection</field>
@@ -20,6 +33,7 @@
                                 <field name="cattle_type"/>
                                 <field name="qty"/>
                                 <field name="fat"/>
+                                <field name="fat_rate"/>
                                 <field name="rate"/>
                                 <field name="amt"/>
                             </group>
@@ -42,18 +56,6 @@
                     <field name="rate"/>
                     <field name="amt"/>
                 </tree>
-            </field>
-        </record>
-
-        <record id="dairy_collection_act_window" model="ir.actions.act_window">
-            <field name="name">Collection</field>
-            <field name="type">ir.actions.act_window</field>
-            <field name="res_model">dairy.collection</field>
-            <field name="view_mode">tree,form</field>
-            <field name="help" type="html">
-                <p class="o_view_nocontent_smiling_face">
-                    There is no examples click here to add new Collection.
-                </p>
             </field>
         </record>
 
