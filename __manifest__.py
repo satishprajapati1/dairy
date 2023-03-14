@@ -1,6 +1,7 @@
 {
     'name': 'Dairy',
     'application':True,
+    'author':'Satish',
     'sequence':-99,
     'depends':['contacts'],
     'data':[
