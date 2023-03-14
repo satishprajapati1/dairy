@@ -1,6 +1,5 @@
 from odoo import fields, models, api
 
-
 class Collection(models.Model):
     _name = 'dairy.collection'
     _description = 'Dairy Collection'
@@ -9,9 +8,33 @@ class Collection(models.Model):
     cattle_type = fields.Many2one('cattle.type')
     qty = fields.Float(string='Quality (Ltr.) ')
     fat = fields.Float()
-    # fatperrate = fields.Many2one('fatrate',domain="[('type','=',cattle_type)]",string='Rate (per Fat)',required=True)
-    # frate = fields.Float(related="fatperrate.rate",readonly=True)
-    rate = fields.Float(string="Rate (per ltr)")
-    # compute='_compute_rate',
-    # compute='_compute_amt',
-    amt = fields.Float()
+    fat_rate = fields.Float(compute='_set_rate_per_fat',readonly=True)
+    rate = fields.Float(compute='_compute_rate',string="Rate (per ltr)")
+    amt = fields.Float(compute='_compute_amt',string="Amount")
+
+    @api.depends("fat_rate")
+    @api.onchange("fat")
+    def _compute_rate(self):
+        for record in self:
+            self.rate = record.fat_rate * record.fat
+
+    @api.onchange("fat_rate")
+    @api.onchange("fat,qty")
+    def _compute_amt(self):
+        for record in self:
+            record.amt = (((record.fat)* record.qty) * record.fat_rate)
+
+    @api.onchange('cattle_type')
+    def _set_rate_per_fat(self):
+        for record in self:
+            record.fat_rate = self.env['collection.rate'].search([('date','<=',fields.Date().today()),('type','=',record.cattle_type.id)],limit=1,order='date desc').rate
+class FatRate(models.Model):
+    _name = 'collection.rate'
+    _description = 'Rate of Milk on the basis of fat and ltr'
+    _rec_name = 'fat'
+    _order = 'date'
+
+    date = fields.Date(default=fields.Date().today())
+    fat = fields.Float(string='Fat',default=1)
+    rate = fields.Float(string='Rate')
+    type = fields.Many2one('cattle.type',string='Cattle Type')

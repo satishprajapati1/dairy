@@ -1,0 +1,38 @@
+<odoo>
+    <record id="collection_rate_main" model="ir.actions.act_window">
+        <field name="name">Rate on Fat</field>
+        <field name="res_model">collection.rate</field>
+        <field name="view_mode">tree,form,kanban</field>
+    </record>
+
+    <record id="collection_rate_tree" model="ir.ui.view" >
+        <field name="name">collection.rate.tree</field>
+        <field name="model">collection.rate</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="date"/>
+                <field name="fat"/>
+                <field name="rate"/>
+                <field name="type"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="collection_rate_form" model="ir.ui.view">
+        <field name="name">collection.rate.form</field>
+        <field name="model">collection.rate</field>
+        <field name="arch" type="xml">
+            <form string="Rate">
+                <sheet>
+                    <group>
+                        <field name="date"/>
+                        <field name="fat"/>
+                        <field name="rate"/>
+                        <field name="type"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>
