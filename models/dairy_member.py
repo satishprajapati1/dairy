@@ -20,7 +20,7 @@ class Member(models.Model):
     ifsc_code = fields.Char()
     branch = fields.Char(string='Branch name')
     # Cattles
-    # cattles = fields.One2many('cattle', 'owner_name', string='Cattles')
+    cattle_ids = fields.One2many('dairy.cattle', 'owner_id', string='Cattles')
     # collection
     # collections = fields.One2many('collection', 'name', string="Collection")
 

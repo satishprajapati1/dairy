@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="dairy_collection_form_view" model="ir.ui.view">
+            <field name="name">dairy.collection.form</field>
+            <field name="model">dairy.collection</field>
+            <field name="arch" type="xml">
+                <form string="Collection">
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="create_date"/>
+                            <h1>
+                                <field name="create_date" readonly="True"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="cattle_type"/>
+                                <field name="qty"/>
+                                <field name="fat"/>
+                                <field name="rate"/>
+                                <field name="amt"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="dairy_collection_tree_view" model="ir.ui.view">
+            <field name="name">dairy.collection.tree</field>
+            <field name="model">dairy.collection</field>
+            <field name="arch" type="xml">
+                <tree string="Collection">
+                    <field name="create_date"/>
+                    <field name="name"/>
+                    <field name="cattle_type"/>
+                    <field name="qty"/>
+                    <field name="fat"/>
+                    <field name="rate"/>
+                    <field name="amt"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="dairy_collection_act_window" model="ir.actions.act_window">
+            <field name="name">Collection</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">dairy.collection</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    There is no examples click here to add new Collection.
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

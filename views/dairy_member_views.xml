@@ -19,7 +19,8 @@
             <field name="arch" type="xml">
                 <form string="Member">
                     <sheet>
-                        <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+                        <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
+                                attrs="{'invisible': [('active', '=', True)]}"/>
                         <field name="image_1920" widget='image' class="oe_avatar"/>
                         <div class="oe_title">
                             <label for="name"/>
@@ -28,7 +29,7 @@
                             </h1>
                         </div>
                         <group>
-                            <group>
+                            <group string="Contact Details">
                                 <label for="street" string="Address"/>
                                 <div class="o_address_format">
                                     <field name="street" placeholder="Street..." class="o_address_street"/>
@@ -47,6 +48,7 @@
                             <group>
                                 <field name="birth_date"/>
                                 <field name="age" readonly="1"/>
+                                <field name="gender" widget="radio"/>
                                 <field name="create_date" string="Joined On"/>
                                 <field name="active" invisible="1"/>
                             </group>
@@ -54,12 +56,29 @@
                         <notebook>
                             <page string="Account Details">
                                 <group>
-                                    <field name="bank_name"/>
-                                    <field name="branch"/>
-                                    <field name="account_no"/>
-                                    <field name="account_type" widget="radio"/>
-                                    <field name="ifsc_code"/>
+                                    <group>
+                                        <field name="bank_name"/>
+                                        <field name="branch"/>
+                                        <field name="ifsc_code" string="IFSC code"/>
+                                    </group>
+                                    <group>
+                                        <field name="account_no"/>
+                                        <field name="account_type" widget="radio"/>
+                                    </group>
                                 </group>
+                            </page>
+                            <page string="Cattles">
+                                <field name="cattle_ids">
+                                    <tree>
+                                        <field name="cattle_id"/>
+                                        <field name="name"/>
+                                        <field name="cattle_type"/>
+                                        <field name="cattle_breed"/>
+                                        <field name="height"/>
+                                        <field name="weight"/>
+                                        <field name="body_condition"/>
+                                    </tree>
+                                </field>
                             </page>
                         </notebook>
                     </sheet>

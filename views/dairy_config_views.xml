@@ -29,8 +29,8 @@
             <field name="res_model">cattle.type</field>
             <field name="view_mode">tree</field>
             <field name="help" type="html">
-                <p class="oe_view_nocontent_create">
-                    There is no examples click here to add new Type.
+                <p class="o_view_nocontent_smiling_face">
+                    Add a Type.
                 </p>
             </field>
         </record>
@@ -41,8 +41,8 @@
             <field name="res_model">cattle.breed</field>
             <field name="view_mode">tree</field>
             <field name="help" type="html">
-                <p class="oe_view_nocontent_create">
-                    There is no examples click here to add new Breed.
+                <p class="o_view_nocontent_smiling_face">
+                    Add a Breed.
                 </p>
             </field>
         </record>

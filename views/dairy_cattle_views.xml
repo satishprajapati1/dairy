@@ -8,15 +8,23 @@
             <field name="arch" type="xml">
                 <form string="Cattle">
                     <sheet>
+                        <field name="image" widget='image' class="oe_avatar"/>
                         <div class="oe_title">
-                            <label for="name"/>
                             <h1>
-                                <field name="name" placeholder="Title"/>
+                                <field name="cattle_id"/>
                             </h1>
                         </div>
                         <group>
                             <group>
-                                <field name="create_date"/>
+                                <field name="name"/>
+                                <field name="cattle_type"/>
+                                <field name="cattle_breed"/>
+                            </group>
+                            <group>
+                                <field name="height"/>
+                                <field name="weight"/>
+                                <field name="body_condition"/>
+                                <field name="owner_id"/>
                             </group>
                         </group>
                     </sheet>
@@ -29,8 +37,13 @@
             <field name="model">dairy.cattle</field>
             <field name="arch" type="xml">
                 <tree string="Cattle">
-                    <field name="create_date"/>
                     <field name="name"/>
+                    <field name="cattle_type"/>
+                    <field name="cattle_breed"/>
+                    <field name="height" optional="hide"/>
+                    <field name="weight" optional="hide"/>
+                    <field name="body_condition"/>
+                    <field name="owner_id"/>
                 </tree>
             </field>
         </record>
@@ -41,8 +54,8 @@
             <field name="res_model">dairy.cattle</field>
             <field name="view_mode">tree,form</field>
             <field name="help" type="html">
-                <p class="oe_view_nocontent_create">
-                    There is no examples click here to add new Cattle.
+                <p class="o_view_nocontent_smiling_face">
+                    Add a Cattle.
                 </p>
             </field>
         </record>

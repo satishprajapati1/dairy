@@ -5,14 +5,16 @@ class Cattle(models.Model):
     _name = 'dairy.cattle'
     _description = 'Dairy Cattle'
 
+    image = fields.Binary(
+        "Image")
     cattle_id = fields.Char()
     name = fields.Char()
-    # cattle_type = fields.Many2one('cattle.type')
-    # cattle_breed = fields.Many2one('cattle.breed', domain="[('type','=',cattle_type)]")
+    cattle_type = fields.Many2one('cattle.type')
+    cattle_breed = fields.Many2one('cattle.breed', domain="[('type','=',cattle_type)]")
     height = fields.Float()
     weight = fields.Float()
-    body_condition = fields.Selection([('fit', 'Fit'), ('sick', 'Sick'), ('weak', 'Weak')])
-    owner_name = fields.Many2one('dairy.member')
+    body_condition = fields.Selection([('fit', 'Fit'), ('sick', 'Sick'), ('weak', 'Weak')],default='fit')
+    owner_id = fields.Many2one('dairy.member')
 
 
 class CattleType(models.Model):
