@@ -2,6 +2,18 @@
 <odoo>
     <data>
 
+        <record id="dairy_cattle_act_window" model="ir.actions.act_window">
+            <field name="name">Cattle</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">dairy.cattle</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Add a Cattle.
+                </p>
+            </field>
+        </record>
+
         <record id="dairy_cattle_form_view" model="ir.ui.view">
             <field name="name">dairy.cattle.form</field>
             <field name="model">dairy.cattle</field>
@@ -11,20 +23,19 @@
                         <field name="image" widget='image' class="oe_avatar"/>
                         <div class="oe_title">
                             <h1>
-                                <field name="cattle_id"/>
+                                <field name="name"/>
                             </h1>
                         </div>
                         <group>
                             <group>
-                                <field name="name"/>
                                 <field name="cattle_type"/>
                                 <field name="cattle_breed"/>
+                                <field name="owner_id"/>
                             </group>
                             <group>
                                 <field name="height"/>
                                 <field name="weight"/>
                                 <field name="body_condition"/>
-                                <field name="owner_id"/>
                             </group>
                         </group>
                     </sheet>
@@ -48,15 +59,24 @@
             </field>
         </record>
 
-        <record id="dairy_cattle_act_window" model="ir.actions.act_window">
-            <field name="name">Cattle</field>
-            <field name="type">ir.actions.act_window</field>
-            <field name="res_model">dairy.cattle</field>
-            <field name="view_mode">tree,form</field>
-            <field name="help" type="html">
-                <p class="o_view_nocontent_smiling_face">
-                    Add a Cattle.
-                </p>
+        <record id="dairy_cattle_search_view" model="ir.ui.view">
+            <field name="name">dairy.cattle.search</field>
+            <field name="model">dairy.cattle</field>
+            <field name="arch" type="xml">
+                <search string="Member">
+                    <field name="name"/>
+                    <filter name="fit_filter" string="Fit Condition" domain="[('body_condition','=','fit')]"/>
+                    <separator/>
+                    <filter name="sick_filter" string="Sick Condition" domain="[('body_condition','=','sick')]"/>
+                    <filter name="weak_filter" string="Weak Condition" domain="[('body_condition','=','weak')]"/>
+                    <group expand="0" name="Group By">
+                        <filter string="Cattle By Owner/Member" name="member_cattle_groupby" context="{'group_by': 'owner_id'}" />
+                        <separator/>
+                        <filter string="Cattle Type" name="cattle_type_groupby" context="{'group_by': 'cattle_type'}" />
+                        <separator/>
+                        <filter string="Cattle Breed" name="cattle_breed_groupby" context="{'group_by': 'cattle_breed'}" />
+                    </group>
+                </search>
             </field>
         </record>
 
