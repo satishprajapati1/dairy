@@ -12,7 +12,7 @@ At the end of the year, Milk Producers can check their yearly profits.
 
 
 
-## Authors
+## Author
 
 - [@satishprajapati1](https://www.github.com/satishprajapati1)
 ## 🚀 About Me
