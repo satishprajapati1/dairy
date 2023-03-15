@@ -70,13 +70,24 @@
                             <page string="Cattles">
                                 <field name="cattle_ids">
                                     <tree>
-                                        <field name="cattle_id"/>
                                         <field name="name"/>
                                         <field name="cattle_type"/>
                                         <field name="cattle_breed"/>
                                         <field name="height"/>
                                         <field name="weight"/>
                                         <field name="body_condition"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Collection">
+                                <field name="collection_ids">
+                                    <tree>
+                                        <field name="create_date"/>
+                                        <field name="cattle_type"/>
+                                        <field name="qty"/>
+                                        <field name="fat"/>
+                                        <field name="rate"/>
+                                        <field name="amt"/>
                                     </tree>
                                 </field>
                             </page>
@@ -91,7 +102,7 @@
             <field name="model">dairy.member</field>
             <field name="arch" type="xml">
                 <tree string="Member">
-                    <field name="partner_id"/>
+                    <field name="name"/>
                     <field name="city"/>
                     <field name="state_id"/>
                     <field name="zip"/>
@@ -99,6 +110,32 @@
                     <field name="email"/>
                     <field name="create_date" string="Joined On"/>
                 </tree>
+            </field>
+        </record>
+
+        <record id="dairy_member_search_view" model="ir.ui.view">
+            <field name="name">dairy.member.search</field>
+            <field name="model">dairy.member</field>
+            <field name="arch" type="xml">
+                <search string="Member">
+                    <field name="name"/>
+                    <field name="bank_name"/>
+                    <field name="city"/>
+                    <field name="state_id"/>
+                    <field name="create_date"/>
+                    <filter name="male_filter" string="Male" domain="[('gender','=','m')]"/>
+                    <separator/>
+                    <filter name="female_filter" string="Female" domain="[('gender','=','f')]"/>
+                    <separator/>
+                    <filter name="other_filter" string="Other" domain="[('gender','=','o')]"/>
+                    <group expand="0" name="Group By">
+                        <filter string="Gender" name="gender_m_groupby" context="{'group_by': 'gender'}" />
+                        <separator/>
+                        <filter string="City" name="city_m_groupby" context="{'group_by': 'city'}" />
+                        <separator/>
+                        <filter string="State" name="state_m_groupby" context="{'group_by': 'state_id'}" />
+                    </group>
+                </search>
             </field>
         </record>
 

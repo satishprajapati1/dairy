@@ -7,7 +7,6 @@ class Cattle(models.Model):
 
     image = fields.Binary(
         "Image")
-    cattle_id = fields.Char()
     name = fields.Char()
     cattle_type = fields.Many2one('cattle.type')
     cattle_breed = fields.Many2one('cattle.breed', domain="[('type','=',cattle_type)]")

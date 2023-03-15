@@ -8,7 +8,7 @@ class Member(models.Model):
     _description = 'Dairy Member'
 
     partner_id = fields.Many2one('res.partner', required=True, ondelete='restrict', auto_join=True,
-                                 string='Related Partner', help='Partner-related data of the Member')
+                                 string='Member Name')
     active = fields.Boolean(default=True)
     birth_date = fields.Date(string="Birth Date")
     age = fields.Integer(compute="_compute_age",default=0)
@@ -22,7 +22,7 @@ class Member(models.Model):
     # Cattles
     cattle_ids = fields.One2many('dairy.cattle', 'owner_id', string='Cattles')
     # collection
-    # collections = fields.One2many('collection', 'name', string="Collection")
+    collection_ids = fields.One2many('dairy.collection', 'member_id', string="Collection")
 
     @api.depends('birth_date')
     def _compute_age(self):

@@ -3,8 +3,10 @@ from odoo import fields, models, api
 class Collection(models.Model):
     _name = 'dairy.collection'
     _description = 'Dairy Collection'
+    _rec_name = 'create_date'
+    _order = 'create_date desc'
 
-    name = fields.Many2one('dairy.member',string='Member Name')
+    member_id = fields.Many2one('dairy.member',string='Member Name')
     cattle_type = fields.Many2one('cattle.type')
     qty = fields.Float(string='Quality (Ltr.) ')
     fat = fields.Float()
