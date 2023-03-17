@@ -23,6 +23,9 @@
                                 attrs="{'invisible': [('active', '=', True)]}"/>
                         <field name="image_1920" widget='image' class="oe_avatar"/>
                         <div class="oe_title">
+                            <h1>
+                                <field name="member_ref"/>
+                            </h1>
                             <label for="name"/>
                             <h1>
                                 <field name="name" placeholder="Title"/>
@@ -102,13 +105,17 @@
             <field name="model">dairy.member</field>
             <field name="arch" type="xml">
                 <tree string="Member">
+                    <field name="member_ref"/>
                     <field name="name"/>
+                    <field name="street"/>
+                    <field name="street2" optional="1"/>
                     <field name="city"/>
                     <field name="state_id"/>
-                    <field name="zip"/>
+                    <field name="country_id" optional="1"/>
+                    <field name="zip" optional="1"/>
                     <field name="phone"/>
                     <field name="email"/>
-                    <field name="create_date" string="Joined On"/>
+                    <field name="create_date" string="Joined On" optional="1"/>
                 </tree>
             </field>
         </record>
@@ -129,14 +136,21 @@
                     <separator/>
                     <filter name="other_filter" string="Other" domain="[('gender','=','o')]"/>
                     <group expand="0" name="Group By">
-                        <filter string="Gender" name="gender_m_groupby" context="{'group_by': 'gender'}" />
+                        <filter string="Gender" name="gender_m_groupby" context="{'group_by': 'gender'}"/>
                         <separator/>
-                        <filter string="City" name="city_m_groupby" context="{'group_by': 'city'}" />
+                        <filter string="City" name="city_m_groupby" context="{'group_by': 'city'}"/>
                         <separator/>
-                        <filter string="State" name="state_m_groupby" context="{'group_by': 'state_id'}" />
+                        <filter string="State" name="state_m_groupby" context="{'group_by': 'state_id'}"/>
                     </group>
                 </search>
             </field>
+        </record>
+
+        <record id="seq_dairy_member" model="ir.sequence">
+            <field name="name">Member Sequence</field>
+            <field name="code">dairy.member</field>
+            <field name="prefix">M/%(year)s/</field>
+            <field name="padding">4</field>
         </record>
 
     </data>
