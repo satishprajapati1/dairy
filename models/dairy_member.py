@@ -7,6 +7,7 @@ class Member(models.Model):
     _inherits = {'res.partner':'partner_id'}
     _description = 'Dairy Member'
 
+    member_ref = fields.Char(string='Member Reference',tracking=True, required=True,readonly=True, default=lambda self: _('New'))
     partner_id = fields.Many2one('res.partner', required=True, ondelete='restrict', auto_join=True,
                                  string='Member Name')
     active = fields.Boolean(default=True)
@@ -32,6 +33,11 @@ class Member(models.Model):
                 birthday = record.birth_date
                 record.age = today.year - birthday.year - ((today.month, today.day) < (birthday.month, birthday.day))
 
+    @api.model
+    def create(self, vals):
+        if vals.get('member_ref', _('New')) == _('New'):
+            vals['member_ref'] = self.env['ir.sequence'].next_by_code('dairy.member') or _('New')
+        return super(Member, self).create(vals)
     # @api.constrains("phone")
     # def _check_phone(self):
     #     for rec in self:
