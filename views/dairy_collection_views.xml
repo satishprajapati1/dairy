@@ -30,7 +30,7 @@
                         <group>
                             <group>
                                 <field name="member_id"/>
-                                <field name="cattle_type"/>
+                                <field name="cattle_type_id"/>
                                 <field name="qty"/>
                                 <field name="fat"/>
                                 <field name="fat_rate"/>
@@ -50,7 +50,7 @@
                 <tree string="Collection">
                     <field name="create_date"/>
                     <field name="member_id"/>
-                    <field name="cattle_type"/>
+                    <field name="cattle_type_id"/>
                     <field name="qty"/>
                     <field name="fat"/>
                     <field name="rate"/>
@@ -65,13 +65,13 @@
                 <search string="Collection">
                     <field name="create_date"/>
                     <field name="member_id"/>
-                    <filter name="cow_collection_filter" string="Cow Collection" domain="[('cattle_type.name','ilike','cow')]"/>
+                    <filter name="cow_collection_filter" string="Cow Collection" domain="[('cattle_type_id.name','ilike','cow')]"/>
                     <separator/>
-                    <filter name="buffalo_collection_filter" string="Buffalo Collection" domain="[('cattle_type.name','ilike','buffalo')]"/>
+                    <filter name="buffalo_collection_filter" string="Buffalo Collection" domain="[('cattle_type_id.name','ilike','buffalo')]"/>
                     <group expand="0" name="Group By">
                         <filter string="Collection By Date" name="date_c_groupby" context="{'group_by': 'create_date'}" />
                         <filter string="Collection By Member" name="member_c_groupby" context="{'group_by': 'member_id'}" />
-                        <filter string="Collection By Cattle Type" name="cattle_type_c_groupby" context="{'group_by': 'cattle_type'}" />
+                        <filter string="Collection By Cattle Type" name="cattle_type_c_groupby" context="{'group_by': 'cattle_type_id'}" />
                     </group>
                 </search>
             </field>
