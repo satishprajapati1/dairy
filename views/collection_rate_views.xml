@@ -13,7 +13,7 @@
                 <field name="date"/>
                 <field name="fat"/>
                 <field name="rate"/>
-                <field name="type"/>
+                <field name="cattle_type_id"/>
             </tree>
         </field>
     </record>
@@ -28,7 +28,7 @@
                         <field name="date"/>
                         <field name="fat"/>
                         <field name="rate"/>
-                        <field name="type"/>
+                        <field name="cattle_type_id"/>
                     </group>
                 </sheet>
             </form>

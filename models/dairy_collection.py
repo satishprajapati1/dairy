@@ -7,7 +7,7 @@ class Collection(models.Model):
     _order = 'create_date desc'
 
     member_id = fields.Many2one('dairy.member',string='Member Name')
-    cattle_type = fields.Many2one('cattle.type')
+    cattle_type_id = fields.Many2one('cattle.type')
     qty = fields.Float(string='Quality (Ltr.) ')
     fat = fields.Float()
     fat_rate = fields.Float(compute='_set_rate_per_fat',readonly=True)
@@ -26,7 +26,7 @@ class Collection(models.Model):
         for record in self:
             record.amt = (((record.fat)* record.qty) * record.fat_rate)
 
-    @api.onchange('cattle_type')
+    @api.onchange('cattle_type_id')
     def _set_rate_per_fat(self):
         for record in self:
             record.fat_rate = self.env['collection.rate'].search([('date','<=',fields.Date().today()),('type','=',record.cattle_type.id)],limit=1,order='date desc').rate
@@ -39,4 +39,4 @@ class FatRate(models.Model):
     date = fields.Date(default=fields.Date().today())
     fat = fields.Float(string='Fat',default=1)
     rate = fields.Float(string='Rate')
-    type = fields.Many2one('cattle.type',string='Cattle Type')
+    cattle_type_id = fields.Many2one('cattle.type',string='Cattle Type')

@@ -22,14 +22,15 @@
                     <sheet>
                         <field name="image" widget='image' class="oe_avatar"/>
                         <div class="oe_title">
+                            <label for="name"/>
                             <h1>
                                 <field name="name"/>
                             </h1>
                         </div>
                         <group>
                             <group>
-                                <field name="cattle_type"/>
-                                <field name="cattle_breed"/>
+                                <field name="cattle_type_id"/>
+                                <field name="cattle_breed_id"/>
                                 <field name="owner_id"/>
                             </group>
                             <group>
@@ -49,8 +50,8 @@
             <field name="arch" type="xml">
                 <tree string="Cattle">
                     <field name="name"/>
-                    <field name="cattle_type"/>
-                    <field name="cattle_breed"/>
+                    <field name="cattle_type_id"/>
+                    <field name="cattle_breed_id"/>
                     <field name="height" optional="hide"/>
                     <field name="weight" optional="hide"/>
                     <field name="body_condition"/>
@@ -72,15 +73,20 @@
                     <group expand="0" name="Group By">
                         <filter string="Cattle By Owner/Member" name="member_cattle_groupby" context="{'group_by': 'owner_id'}" />
                         <separator/>
-                        <filter string="Cattle Type" name="cattle_type_groupby" context="{'group_by': 'cattle_type'}" />
+                        <filter string="Cattle Type" name="cattle_type_groupby" context="{'group_by': 'cattle_type_id'}" />
                         <separator/>
-                        <filter string="Cattle Breed" name="cattle_breed_groupby" context="{'group_by': 'cattle_breed'}" />
+                        <filter string="Cattle Breed" name="cattle_breed_groupby" context="{'group_by': 'cattle_breed_id'}" />
                     </group>
                 </search>
             </field>
         </record>
 
-
+        <record id="seq_dairy_cattle" model="ir.sequence">
+            <field name="name">Cattle Sequence</field>
+            <field name="code">dairy.cattle</field>
+            <field name="prefix">C/%(year)s/</field>
+            <field name="padding">5</field>
+        </record>
 
     </data>
 </odoo>
