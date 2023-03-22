@@ -24,6 +24,7 @@ class Member(models.Model):
     cattle_ids = fields.One2many('dairy.cattle', 'owner_id', string='Cattles')
     # collection
     collection_ids = fields.One2many('dairy.collection', 'member_id', string="Collection")
+    total_collection = fields.Float(compute='_count_collection_amount',default=0.0,help="Shows Current Year Collection")
 
     @api.depends('birth_date')
     def _compute_age(self):
@@ -44,3 +45,13 @@ class Member(models.Model):
     #         if rec.phone and len(rec.phone) != 10 and not str(rec.phone).isdigit():
     #             raise ValidationError(_("Phone number must be 10 valid digits"))
     #     return True
+
+    def action_view_collection(self):
+        res = self.env.ref("dairy.dairy_collection_act_window").read()[0]
+        res["domain"] = [("member_id", "=", self.id)]
+        return res
+
+    @api.depends('collection_ids')
+    def _count_collection_amount(self):
+        for rec in self:
+            rec.total_collection = sum(rec.env['dairy.collection'].search([('member_id','=',rec.id)]).mapped("amt"))

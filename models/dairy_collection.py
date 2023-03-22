@@ -29,7 +29,8 @@ class Collection(models.Model):
     @api.onchange('cattle_type_id')
     def _set_rate_per_fat(self):
         for record in self:
-            record.fat_rate = self.env['collection.rate'].search([('date','<=',fields.Date().today()),('type','=',record.cattle_type.id)],limit=1,order='date desc').rate
+            record.fat_rate = self.env['collection.rate'].search([('date','<=',fields.Date().today()),('cattle_type_id','=',record.cattle_type_id.id)],limit=1,order='date desc').rate
+
 class FatRate(models.Model):
     _name = 'collection.rate'
     _description = 'Rate of Milk on the basis of fat and ltr'
