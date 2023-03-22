@@ -19,6 +19,11 @@
             <field name="arch" type="xml">
                 <form string="Member">
                     <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="action_view_collection" type="object" class="oe_stat_button" icon="fa-money">
+                                <field name="total_collection" widget="statinfo" string="Collection"/>
+                            </button>
+                        </div>
                         <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
                                 attrs="{'invisible': [('active', '=', True)]}"/>
                         <field name="image_1920" widget='image' class="oe_avatar"/>
