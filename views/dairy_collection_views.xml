@@ -6,7 +6,7 @@
             <field name="name">Collection</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">dairy.collection</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">tree,pivot,form</field>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
                     There is no examples click here to add new Collection.
@@ -58,6 +58,32 @@
                 </tree>
             </field>
         </record>
+
+        <record id="dairy_collection_report_view_pivot" model="ir.ui.view">
+            <field name="name">dairy.collection.report.pivot</field>
+            <field name="model">dairy.collection</field>
+            <field name="priority">60</field>
+            <field name="arch" type="xml">
+                <pivot string="Collection Analysis" sample="1">
+                    <field name="create_date" interval="month" type="col"/>
+                    <field name="cattle_type_id" type="row"/>
+                    <field name="amt" type="measure"/>
+                </pivot>
+            </field>
+        </record>
+        
+<!--        <record id="dairy_collection_report_view_graph" model="ir.ui.view">-->
+<!--            <field name="name">dairy.collection.report.graph</field>-->
+<!--            <field name="model">dairy.collection</field>-->
+<!--            <field name="priority">20</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <graph string="Collection Analysis" stacked="True" sample="1">-->
+<!--                    <field name="create_date" interval="month" type="row"/>-->
+<!--                    <field name="cattle_type_id" type="col"/>-->
+<!--                </graph>-->
+<!--            </field>-->
+<!--        </record>-->
+
         <record id="dairy_collection_search_view" model="ir.ui.view">
             <field name="name">dairy.collection.search</field>
             <field name="model">dairy.collection</field>

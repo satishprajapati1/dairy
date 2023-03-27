@@ -12,16 +12,16 @@ class Collection(models.Model):
     fat = fields.Float()
     fat_rate = fields.Float(compute='_set_rate_per_fat',readonly=True)
     rate = fields.Float(compute='_compute_rate',string="Rate (per ltr)")
-    amt = fields.Float(compute='_compute_amt',string="Amount")
+    amt = fields.Float(compute='_compute_amt',string="Amount",store=True)
 
     @api.depends("fat_rate")
     @api.onchange("fat")
     def _compute_rate(self):
         for record in self:
-            self.rate = record.fat_rate * record.fat
+            record.rate = record.fat_rate * record.fat
 
-    @api.onchange("fat_rate")
-    @api.onchange("fat,qty")
+    @api.onchange("fat_rate,fat,qty")
+    @api.depends("fat_rate","fat","qty")
     def _compute_amt(self):
         for record in self:
             record.amt = (((record.fat)* record.qty) * record.fat_rate)

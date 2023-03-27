@@ -28,10 +28,22 @@ class CattleType(models.Model):
 
     name = fields.Char(string='Name')
     sequence = fields.Integer('Sequence', default=1, help="Used to order stages. Lower is better.")
+    # collection_ids = fields.One2many('dairy.collection','cattle_type_id')
+    # collection_amount = fields.Float(compute='_count_collection_amount',default=0.0)
 
     _sql_constraints = [
         ('type_uniq','unique(name)','Cattle Type must be unique')
     ]
+
+    # def action_view_collection_of_type(self):
+    #     res = self.env.ref("dairy.dairy_collection_act_window").read()[0]
+    #     res["domain"] = [("cattle_type_id", "=", self.id)]
+    #     return res
+    #
+    # @api.depends('collection_ids')
+    # def _count_collection_amount(self):
+    #     for rec in self:
+    #         rec.collection_amount = sum(rec.env['dairy.collection'].search([('cattle_type_id', '=', rec.id)]).mapped("amt"))
 
 
 class CattleBreed(models.Model):

@@ -24,7 +24,7 @@ class Member(models.Model):
     cattle_ids = fields.One2many('dairy.cattle', 'owner_id', string='Cattles')
     # collection
     collection_ids = fields.One2many('dairy.collection', 'member_id', string="Collection")
-    total_collection = fields.Float(compute='_count_collection_amount',default=0.0,help="Shows Current Year Collection")
+    total_collection = fields.Float(compute='_count_total_collection',default=0.0,help="Shows Current Year Collection")
 
     @api.depends('birth_date')
     def _compute_age(self):
@@ -52,6 +52,6 @@ class Member(models.Model):
         return res
 
     @api.depends('collection_ids')
-    def _count_collection_amount(self):
+    def _count_total_collection(self):
         for rec in self:
             rec.total_collection = sum(rec.env['dairy.collection'].search([('member_id','=',rec.id)]).mapped("amt"))
