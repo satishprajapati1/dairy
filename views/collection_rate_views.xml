@@ -9,7 +9,7 @@
         <field name="name">collection.rate.tree</field>
         <field name="model">collection.rate</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree sample="1">
                 <field name="date"/>
                 <field name="fat"/>
                 <field name="rate"/>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="cattle_breed_gir" model="cattle.breed">
+            <field name="name">Gir</field>
+            <field name="cattle_type_id" ref="dairy.cattle_type_cow" />
+        </record>
+        <record id="cattle_breed_sahiwal" model="cattle.breed">
+            <field name="name">Sahiwal</field>
+            <field name="cattle_type_id" ref="dairy.cattle_type_cow" />
+        </record>
+        <record id="cattle_breed_kankrej" model="cattle.breed">
+            <field name="name">Kankrej</field>
+            <field name="cattle_type_id" ref="dairy.cattle_type_cow" />
+        </record>
+        <record id="cattle_breed_jersey" model="cattle.breed">
+            <field name="name">Jersey</field>
+            <field name="cattle_type_id" ref="dairy.cattle_type_cow" />
+        </record>
+        <record id="cattle_breed_hf" model="cattle.breed">
+            <field name="name">Holstein Friesian (HF)</field>
+            <field name="cattle_type_id" ref="dairy.cattle_type_cow" />
+        </record>
+
+        <record id="cattle_breed_murrah" model="cattle.breed">
+            <field name="name">Murrah</field>
+            <field name="cattle_type_id" ref="dairy.cattle_type_buffalo" />
+        </record>
+        <record id="cattle_breed_surti" model="cattle.breed">
+            <field name="name">Surti</field>
+            <field name="cattle_type_id" ref="dairy.cattle_type_buffalo" />
+        </record>
+        <record id="cattle_breed_jaffrabadi" model="cattle.breed">
+            <field name="name">Jaffrabadi</field>
+            <field name="cattle_type_id" ref="dairy.cattle_type_buffalo" />
+        </record>
+        <record id="cattle_breed_bhadawari" model="cattle.breed">
+            <field name="name">Bhadawari</field>
+            <field name="cattle_type_id" ref="dairy.cattle_type_buffalo" />
+        </record>
+        <record id="cattle_breed_nili_ravi" model="cattle.breed">
+            <field name="name">Nili Ravi</field>
+            <field name="cattle_type_id" ref="dairy.cattle_type_buffalo" />
+        </record>
+        <record id="cattle_breed_mehsana" model="cattle.breed">
+            <field name="name">Mehsana</field>
+            <field name="cattle_type_id" ref="dairy.cattle_type_buffalo" />
+        </record>
+        <record id="cattle_breed_nagpuri" model="cattle.breed">
+            <field name="name">Nagpuri</field>
+            <field name="cattle_type_id" ref="dairy.cattle_type_buffalo" />
+        </record>
+        <record id="cattle_breed_toda" model="cattle.breed">
+            <field name="name">Toda</field>
+            <field name="cattle_type_id" ref="dairy.cattle_type_buffalo" />
+        </record>
+    </data>
+</odoo>

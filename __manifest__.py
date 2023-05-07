@@ -1,6 +1,6 @@
 {
     'name': 'Dairy',
-    'depends':['contacts','report_xlsx'],
+    'depends':['contacts','mail','report_xlsx'],
     'author' : 'Satish Prajapati',
     'summary': 'Dairy Management',
     'sequence': 10,
@@ -17,6 +17,8 @@ At the end of the year, Milk Producers can check their yearly profits.
     'website': 'https://github.com/satishprajapati1/dairy',
     'data':[
         'security/ir.model.access.csv',
+        'data/cattle_type_data.xml',
+        'data/cattle_breed_data.xml',
         'report/report.xml',
         'views/dairy_member_views.xml',
         'views/dairy_cattle_views.xml',

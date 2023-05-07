@@ -3,9 +3,13 @@ from odoo import fields, models, api
 class Collection(models.Model):
     _name = 'dairy.collection'
     _description = 'Dairy Collection'
-    _rec_name = 'create_date'
-    _order = 'create_date desc'
+    _inherit = [
+        'mail.thread', 'mail.activity.mixin'
+    ]
+    _rec_name = 'collection_date'
+    _order = 'collection_date desc'
 
+    collection_date = fields.Datetime(string="Collection Date")
     member_id = fields.Many2one('dairy.member',string='Member Name',required=True)
     cattle_type_id = fields.Many2one('cattle.type',required=True)
     qty = fields.Float(string='Quantity (Ltr.) ',required=True)
@@ -29,6 +33,7 @@ class Collection(models.Model):
     def _set_rate_per_fat(self):
         for record in self:
             record.fat_rate = record.env['collection.rate'].search([('date', '<=', fields.Date().today()), ('cattle_type_id', '=', record.cattle_type_id.id)], limit=1, order='date desc').rate
+
 
 class FatRate(models.Model):
     _name = 'collection.rate'

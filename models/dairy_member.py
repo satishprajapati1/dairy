@@ -4,6 +4,9 @@ import re
 
 class Member(models.Model):
     _name = 'dairy.member'
+    _inherit = [
+        'mail.thread', 'mail.activity.mixin'
+    ]
     _inherits = {'res.partner':'partner_id'}
     _description = 'Dairy Member'
 

@@ -3,6 +3,9 @@ from odoo import fields, models, api,_
 
 class Cattle(models.Model):
     _name = 'dairy.cattle'
+    _inherit = [
+        'mail.thread', 'mail.activity.mixin'
+    ]
     _description = 'Dairy Cattle'
 
     image = fields.Binary(

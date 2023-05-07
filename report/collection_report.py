@@ -52,3 +52,4 @@ class CollectionXlsx(models.AbstractModel):
         column += 1
         sheet.write(row, column, sum(collections.mapped('amt')), format_float)
         # Add total quantity
+
