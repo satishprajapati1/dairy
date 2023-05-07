@@ -6,7 +6,7 @@
             <field name="name">dairy.cattle.type.tree</field>
             <field name="model">cattle.type</field>
             <field name="arch" type="xml">
-                <tree string="Cattle Type" editable="bottom">
+                <tree string="Cattle Type" editable="bottom" sample="1">
                     <field name="sequence" widget="handle"/>
                     <field name="name"/>
                 </tree>
@@ -17,7 +17,7 @@
             <field name="name">dairy.cattle.breed.tree</field>
             <field name="model">cattle.breed</field>
             <field name="arch" type="xml">
-                <tree string="Cattle Breed" editable="bottom">
+                <tree string="Cattle Breed" editable="bottom" sample="1">
                     <field name="sequence" widget="handle"/>
                     <field name="name"/>
                     <field name="cattle_type_id"/>

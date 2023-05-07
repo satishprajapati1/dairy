@@ -29,8 +29,8 @@
                         </div>
                         <group>
                             <group>
-                                <field name="cattle_type_id"/>
-                                <field name="cattle_breed_id"/>
+                                <field name="cattle_type_id" required="1"/>
+                                <field name="cattle_breed_id" required="1"/>
                                 <field name="owner_id"/>
                             </group>
                             <group>
@@ -40,6 +40,11 @@
                             </group>
                         </group>
                     </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
                 </form>
             </field>
         </record>
@@ -48,7 +53,7 @@
             <field name="name">dairy.cattle.tree</field>
             <field name="model">dairy.cattle</field>
             <field name="arch" type="xml">
-                <tree string="Cattle">
+                <tree string="Cattle" sample="1">
                     <field name="name"/>
                     <field name="cattle_type_id"/>
                     <field name="cattle_breed_id"/>

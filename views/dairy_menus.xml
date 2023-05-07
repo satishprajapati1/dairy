@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
 
-        <menuitem name="Dairy" id="dairy_root_menu"/>
+        <menuitem name="Dairy" id="dairy_root_menu" web_icon="dairy,static/description/icon.png"/>
             <menuitem name="Member" id="dairy_member_menu" parent="dairy_root_menu" action="dairy_member_act_window" sequence="1"/>
             <menuitem name="Cattle" id="dairy_cattle_menu" parent="dairy_root_menu" action="dairy_cattle_act_window" sequence="2"/>
             <menuitem name="Collection" id="dairy_collection_menu" parent="dairy_root_menu"
                   action="dairy_collection_act_window" sequence="3"/>
+            <menuitem name="Reporting" id="dairy_reporting_menu" parent="dairy_root_menu" action="report_collections_xlsx" sequence="4"/>
             <menuitem name="Configuration" id="dairy_config_menu" parent="dairy_root_menu" sequence="10"/>
                 <menuitem name="Rate on Fat" id="collection_rate_menu" parent="dairy_config_menu"  action="collection_rate_main" sequence="1"/>
                 <menuitem name="Cattle Type" id="cattle_type_menu" parent="dairy_config_menu" action="cattle_type_act_window" sequence="3"/>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="1">
+	   <record id="cattle_type_cow" model="cattle.type">
+            <field name="name">Cow</field>
+        </record>
+        <record id="cattle_type_buffalo" model="cattle.type">
+            <field name="name">Buffalo</field>
+        </record>
+	</data>
+</odoo>
