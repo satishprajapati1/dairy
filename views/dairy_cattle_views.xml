@@ -8,8 +8,9 @@
             <field name="res_model">dairy.cattle</field>
             <field name="view_mode">tree,form</field>
             <field name="help" type="html">
-                <p class="o_view_nocontent_smiling_face">
-                    Add a Cattle.
+                <img src="/dairy/static/description/cow.jpg" class="img img-fluid o_we_custom_image" style="width:200px;height:200px" alt="Cow"/>
+                <p>
+                    No Cattles are there.
                 </p>
             </field>
         </record>
@@ -82,6 +83,11 @@
                         <separator/>
                         <filter string="Cattle Breed" name="cattle_breed_groupby" context="{'group_by': 'cattle_breed_id'}" />
                     </group>
+<!--                    <searchpanel>-->
+<!--                        <field name="cattle_type_id" string="Types" enable_counters="1"/>-->
+<!--                        <field name="cattle_breed_id" string="Breeds" enable_counters="1"/>-->
+<!--                        <field name="body_condition" string="Body Condition" enable_counters="1"/>-->
+<!--                    </searchpanel>-->
                 </search>
             </field>
         </record>
