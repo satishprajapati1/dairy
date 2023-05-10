@@ -33,7 +33,7 @@
                                 <field name="cattle_type_id"/>
                                 <field name="qty"/>
                                 <field name="fat"/>
-                                <field name="fat_rate"/>
+                                <field name="fat_rate" invisible="1"/>
                                 <field name="rate"/>
                                 <field name="amt"/>
                             </group>
@@ -70,24 +70,12 @@
             <field name="priority">60</field>
             <field name="arch" type="xml">
                 <pivot string="Collection Analysis" sample="1">
-                    <field name="create_date" interval="month" type="col"/>
+                    <field name="collection_date" interval="month" type="col"/>
                     <field name="cattle_type_id" type="row"/>
                     <field name="amt" type="measure"/>
                 </pivot>
             </field>
         </record>
-        
-<!--        <record id="dairy_collection_report_view_graph" model="ir.ui.view">-->
-<!--            <field name="name">dairy.collection.report.graph</field>-->
-<!--            <field name="model">dairy.collection</field>-->
-<!--            <field name="priority">20</field>-->
-<!--            <field name="arch" type="xml">-->
-<!--                <graph string="Collection Analysis" stacked="True" sample="1">-->
-<!--                    <field name="create_date" interval="month" type="row"/>-->
-<!--                    <field name="cattle_type_id" type="col"/>-->
-<!--                </graph>-->
-<!--            </field>-->
-<!--        </record>-->
 
         <record id="dairy_collection_search_view" model="ir.ui.view">
             <field name="name">dairy.collection.search</field>

@@ -1,9 +1,9 @@
 {
     'name': 'Dairy',
-    'depends':['contacts','mail','report_xlsx'],
+    'depends':['base','contacts','mail','report_xlsx'],
     'author' : 'Satish Prajapati',
     'summary': 'Dairy Management',
-    'sequence': 10,
+    'sequence': -10,
     'description': """
 Dairy Management
 ====================
