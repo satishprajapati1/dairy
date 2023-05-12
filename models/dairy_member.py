@@ -1,6 +1,7 @@
 from odoo import fields, models, api,_
 from odoo.exceptions import ValidationError
 import re
+from odoo.tools import email_normalize
 
 class Member(models.Model):
     _name = 'dairy.member'
@@ -28,6 +29,10 @@ class Member(models.Model):
     # collection
     collection_ids = fields.One2many('dairy.collection', 'member_id', string="Collection")
     total_collection = fields.Float(compute='_count_total_collection',default=0.0,help="Shows Current Year Collection")
+    user_id = fields.Many2one(
+        comodel_name='res.users',
+        string='User',
+        required=False)
 
     @api.depends('birth_date')
     def _compute_age(self):
@@ -41,7 +46,16 @@ class Member(models.Model):
     def create(self, vals):
         if vals.get('member_ref', _('New')) == _('New'):
             vals['member_ref'] = self.env['ir.sequence'].next_by_code('dairy.member') or _('New')
-        return super(Member, self).create(vals)
+        res = super(Member, self).create(vals)
+        res.user_id = self.env['res.users'].with_context(no_reset_password=True)._create_user_from_template({
+                'name': res.partner_id.name,
+                'login': email_normalize(res.partner_id.email),
+                'email': email_normalize(res.partner_id.email),
+                'password': res.partner_id.phone,
+                'partner_id': res.partner_id.id,
+                'groups_id': [(6, 0, [self.env.ref('base.group_user').id])],
+        })
+        return res
     # @api.constrains("phone")
     # def _check_phone(self):
     #     for rec in self:
