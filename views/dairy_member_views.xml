@@ -7,7 +7,7 @@
             <field name="res_model">dairy.member</field>
             <field name="view_mode">kanban,tree,form</field>
             <field name="help" type="html">
-                <img src="/dairy/static/description/man.png" class="img img-fluid o_we_custom_image" style="width:200px;height:200px" alt="Member"/>
+                <img src="/dairy/static/description/man.png" class="img img-fluid o_we_custom_image" style="width:100px;height:100px" alt="Member"/>
                 <p>
                     No Members are there. Add member by Clicking <strong>NEW</strong>
                 </p>
@@ -59,6 +59,7 @@
                                 <field name="age" readonly="1"/>
                                 <field name="gender" widget="radio"/>
                                 <field name="create_date" string="Joined On"/>
+                                <field name="user_id" string="User" invisible="1"/>
                                 <field name="active" invisible="1"/>
                             </group>
                         </group>
@@ -156,13 +157,10 @@
                                 <div class="oe_kanban_details d-flex flex-column">
                                     <strong class="o_kanban_record_title oe_partner_heading"><field name="member_ref"/></strong>
                                     <strong class="o_kanban_record_title oe_partner_heading"><field name="display_name"/></strong>
-                                    <div class="o_kanban_tags_section oe_kanban_partner_categories"/>
                                     <ul>
-                                        <li t-if="record.age.raw_value" class="o_text_overflow"><field name="age"/></li>
-                                        <li t-if="record.gender.raw_value" class="o_text_overflow"><field name="gender"/></li>
-                                        <li t-if="record.city.raw_value" class="o_text_overflow"><field name="city"/></li>
-                                        <li t-if="record.phone.raw_value" class="o_text_overflow"><field name="phone"/></li>
-                                        <li t-if="record.email.raw_value" class="o_text_overflow"><field name="email"/></li>
+                                        <li t-if="record.city.raw_value" class="o_text_overflow"><field name="city"/></li><br/>
+                                        <li t-if="record.phone.raw_value" class="o_text_overflow"><field name="phone"/></li><br/>
+                                        <li t-if="record.email.raw_value" class="o_text_overflow"><field name="email"/></li><br/>
                                     </ul>
                                     <div class="o_row">
                                         <span class="oe_kanban_partner_links"/>
