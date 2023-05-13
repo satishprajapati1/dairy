@@ -2,9 +2,9 @@
 <odoo>
     <data>
 
-    <record id="controller_example_report_form_view" model="ir.ui.view">
-        <field name="name">controller.example.report.form.view</field>
-        <field name="model">controller.example.report</field>
+    <record id="collection_report_wizard_form_view" model="ir.ui.view">
+        <field name="name">collection.report.form.view</field>
+        <field name="model">collection.report</field>
         <field name="arch" type="xml">
             <form>
                 <group colspan="4">
@@ -20,14 +20,13 @@
         </field>
     </record>
 
-    <record id="action_controller_example_report" model="ir.actions.act_window">
-        <field name="name">Controller Example Report</field>
-        <field name="res_model">controller.example.report</field>
+    <record id="collection_report_action" model="ir.actions.act_window">
+        <field name="name">Collection Report</field>
+        <field name="res_model">collection.report</field>
         <field name="view_mode">form</field>
-        <field name="view_id" ref="controller_example_report_form_view"/>
+        <field name="view_id" ref="collection_report_wizard_form_view"/>
         <field name="target">new</field>
     </record>
 
-    <menuitem id="example_report" name="XLSX Report" parent="warranty.warranty_root_menu" action="action_controller_example_report"/>
     </data>
 </odoo>
