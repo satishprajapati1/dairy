@@ -1,1 +1,1 @@
-from . import controller_exaple
+from . import collection_report_wizard

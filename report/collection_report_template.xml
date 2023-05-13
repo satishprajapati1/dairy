@@ -1,0 +1,32 @@
+<odoo>
+
+    <record id="report_collection_details" model="ir.actions.report">
+        <field name="name">Collection Report</field>
+        <field name="model">dairy.collection</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">dairy.collection_report_pdf</field>
+        <field name="report_file">dairy.collection_report_pdf</field>
+        <field name="binding_model_id" ref="dairy.model_dairy_collection"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="collection_report_pdf">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.internal_layout">
+                    <div class="page">
+                        <div>
+                            <span class="text-center">
+                                <h1>AMC Card</h1>
+                            </span>
+                        </div>
+                    </div>
+                    <style>
+                        .head{font-size:25px;}
+                        .line{ border-bottom: 2px solid black;}
+                    </style>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

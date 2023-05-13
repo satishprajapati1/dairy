@@ -5,3 +5,4 @@ access_cattle_type,access_cattle_type,model_cattle_type,base.group_user,1,1,1,1
 access_cattle_breed,access_cattle_breed,model_cattle_breed,base.group_user,1,1,1,1
 access_dairy_collection,access_dairy_collection,model_dairy_collection,base.group_user,1,1,1,1
 access_collection_rate,access_collection_rate,model_collection_rate,base.group_user,1,1,1,1
+access_collection_report,access_collection_report,model_collection_report,base.group_user,1,1,1,1
