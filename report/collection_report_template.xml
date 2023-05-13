@@ -11,22 +11,99 @@
     </record>
 
     <template id="collection_report_pdf">
-        <t t-call="web.html_container">
-            <t t-foreach="docs" t-as="o">
-                <t t-call="web.internal_layout">
-                    <div class="page">
-                        <div>
-                            <span class="text-center">
-                                <h1>AMC Card</h1>
-                            </span>
-                        </div>
+        <t t-call="web.basic_layout">
+            <div class="page">
+                <style>
+                    table {
+                    width: 100%;
+                    text-align: center;
+                    }
+                    #collection_data th, #collection_data td {
+                    border: 1px solid black;
+                    padding: 5px;
+                    }
+                    #collection_data th h5 {
+                    font-weight: 700;
+                    }
+                </style>
+                <center>
+                    <div>
+                        <h3 style="font-weight: 700;">Milk Collection Report (
+<!--                            <t t-esc="data['start_date']"/>-->
+<!--                            to<t t-esc="data['end_date']"/>)-->
+                        </h3>
                     </div>
-                    <style>
-                        .head{font-size:25px;}
-                        .line{ border-bottom: 2px solid black;}
-                    </style>
-                </t>
-            </t>
+                    <br/>
+                    <div>
+                        <table id="collection_data">
+                            <tr>
+                                <th>
+                                    <h5>Date</h5>
+                                </th>
+                                <th>
+                                    <h5>Type</h5>
+                                </th>
+                                <th>
+                                    <h5>Quantity (Ltr)</h5>
+                                </th>
+                                <th>
+                                    <h5>Fat</h5>
+                                </th>
+                                <th>
+                                    <h5>Rate</h5>
+                                </th>
+                                <th>
+                                    <h5>Amount</h5>
+                                </th>
+                            </tr>
+<!--                            <t t-if="data['collection_details']">-->
+<!--                                <t t-foreach="data['collection_details']" t-as="cd">-->
+<!--                                    <tr>-->
+<!--                                        <td>-->
+<!--                                            <h5>-->
+<!--                                                <t t-esc="cd['date']"/>-->
+<!--                                            </h5>-->
+<!--                                        </td>-->
+<!--                                        <td>-->
+<!--                                            <h5>-->
+<!--                                                <t t-esc="cd['cattle_type_id']"/>-->
+<!--                                            </h5>-->
+<!--                                        </td>-->
+<!--                                        <td>-->
+<!--                                            <h5>-->
+<!--                                                <t t-esc="cd['qty']"/>-->
+<!--                                            </h5>-->
+<!--                                        </td>-->
+<!--                                        <td>-->
+<!--                                            <h5>-->
+<!--                                                <t t-esc="cd['fat']"/>-->
+<!--                                            </h5>-->
+<!--                                        </td>-->
+<!--                                        <td>-->
+<!--                                            <h5>-->
+<!--                                                <t t-esc="cd['rate']"/>-->
+<!--                                            </h5>-->
+<!--                                        </td>-->
+<!--                                        <td>-->
+<!--                                            <h5>-->
+<!--                                                <t t-esc="cd['amt']"/>-->
+<!--                                            </h5>-->
+<!--                                        </td>-->
+<!--                                    </tr>-->
+<!--                                </t>-->
+<!--                            </t>-->
+<!--                            <t t-if="not data['collection_details']">-->
+<!--                                <tr>-->
+<!--                                    <td colspan="5">-->
+<!--                                        <h5>No records found!</h5>-->
+<!--                                    </td>-->
+<!--                                </tr>-->
+<!--                            </t>-->
+                        </table>
+                    </div>
+                </center>
+            </div>
         </t>
     </template>
+
 </odoo>

@@ -79,9 +79,16 @@ class Member(models.Model):
         self.ensure_one()
         default_template = self.env.ref('dairy.collection_details_mail')
         compose_form = self.env.ref('mail.email_compose_message_wizard_form', False)
-        report_id = self.env.ref(
-            'dairy.report_collection_details')._render_qweb_pdf(self.id)
+        print(">>>>>>>>>>>>>>>",self.id)
+        # report_id = self.env['ir.actions.report']._render_qweb_pdf("dairy.report_collection_details", self.id)[0]
+        report_id = self.env['ir.actions.report']._render_qweb_pdf(
+            report_ref='dairy.report_collection_details',
+            data=None,
+            res_ids=self.ids,
+        )
+        print(">>>>>>>>>>>>>>>",report_id[0])
         data_record = base64.b64encode(report_id[0])
+
         ir_values = {
             'name': "Collection Details Report",
             'datas': data_record,
@@ -89,6 +96,7 @@ class Member(models.Model):
             'mimetype': 'application/pdf',
         }
         data_id = self.env['ir.attachment'].create(ir_values)
+        print(">>>>>>>>>>>>>>>",data_id)
         ctx = dict(
             default_model='dairy.collection',
             default_res_id=self.id,
@@ -98,6 +106,7 @@ class Member(models.Model):
             default_attachment_ids=[(6, 0, [data_id.id])],
             force_email=True,
         )
+        print(">>>>>>>>>>>>",ctx)
         return {
             'name': _('Compose Email'),
             'type': 'ir.actions.act_window',

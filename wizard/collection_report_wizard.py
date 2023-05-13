@@ -19,16 +19,21 @@ class CollectionReport(models.TransientModel):
     date_to = fields.Date(string='Date To', required=True,
                           default=str(datetime.datetime.now() + relativedelta.relativedelta(months=+1, day=1, days=-1))[
                                   :10])
-
+    member_id = fields.Many2one('dairy.member')
+    
     def print_report(self):
         return {
             'type': 'ir.actions.act_url',
             'url': '/web/collection_report/%s' % (self.id),
             'target': 'new',
         }
+    
+    def action_print_collection_report_pdf(self):
+        return self.env.ref("dairy.report_collection_details").report_action(self)
 
+    
     def generate_xlsx_report(self):
-        collections = self.env['dairy.collection'].search([('collection_date','>=',self.date_from),('collection_date','<=',self.date_to)])
+        collections = self.env['dairy.collection'].search([('collection_date','>=',self.date_from),('collection_date','<',self.date_to)])
         fp = BytesIO()
         workbook = xlsxwriter.Workbook(fp)
         sheet = workbook.add_worksheet("Report")
@@ -57,7 +62,7 @@ class CollectionReport(models.TransientModel):
         row += 1
         for obj in collections:
             column = 0
-            sheet.write(row, column, obj.create_date, date)
+            sheet.write(row, column, obj.collection_date, date)
             column += 1
             sheet.write(row, column, obj.cattle_type_id.name, format_float)
             column += 1
