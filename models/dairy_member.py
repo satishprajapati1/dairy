@@ -1,8 +1,6 @@
 import base64
 
 from odoo import fields, models, api,_
-from odoo.exceptions import ValidationError
-import re
 from odoo.tools import email_normalize
 
 class Member(models.Model):
@@ -58,12 +56,6 @@ class Member(models.Model):
                 'groups_id': [(6, 0, [self.env.ref('base.group_user').id])],
         })
         return res
-    # @api.constrains("phone")
-    # def _check_phone(self):
-    #     for rec in self:
-    #         if rec.phone and len(rec.phone) != 10 and not str(rec.phone).isdigit():
-    #             raise ValidationError(_("Phone number must be 10 valid digits"))
-    #     return True
 
     def action_view_collection(self):
         res = self.env.ref("dairy.dairy_collection_act_window").read()[0]
@@ -74,46 +66,3 @@ class Member(models.Model):
     def _count_total_collection(self):
         for rec in self:
             rec.total_collection = sum(rec.env['dairy.collection'].search([('member_id','=',rec.id)]).mapped("amt"))
-
-    # def action_send_mail(self):
-    #     self.ensure_one()
-    #     default_template = self.env.ref('dairy.collection_details_mail')
-    #     compose_form = self.env.ref('mail.email_compose_message_wizard_form', False)
-    #     print(">>>>>>>>>>>>>>>",self.id)
-    #     # report_id = self.env['ir.actions.report']._render_qweb_pdf("dairy.report_collection_details", self.id)[0]
-    #     report_id = self.env['ir.actions.report']._render_qweb_pdf(
-    #         report_ref='dairy.report_collection_details',
-    #         data=None,
-    #         res_ids=self.ids,
-    #     )
-    #     print(">>>>>>>>>>>>>>>",report_id[0])
-    #     data_record = base64.b64encode(report_id[0])
-    #
-    #     ir_values = {
-    #         'name': "Collection Details Report",
-    #         'datas': data_record,
-    #         'store_fname': data_record,
-    #         'mimetype': 'application/pdf',
-    #     }
-    #     data_id = self.env['ir.attachment'].create(ir_values)
-    #     print(">>>>>>>>>>>>>>>",data_id)
-    #     ctx = dict(
-    #         default_model='dairy.collection',
-    #         default_res_id=self.id,
-    #         default_use_template=bool(default_template),
-    #         default_template_id=default_template and default_template.id,
-    #         default_composition_mode='comment',
-    #         default_attachment_ids=[(6, 0, [data_id.id])],
-    #         force_email=True,
-    #     )
-    #     print(">>>>>>>>>>>>",ctx)
-    #     return {
-    #         'name': _('Compose Email'),
-    #         'type': 'ir.actions.act_window',
-    #         'view_mode': 'form',
-    #         'res_model': 'mail.compose.message',
-    #         'views': [(compose_form.id, 'form')],
-    #         'view_id': compose_form.id,
-    #         'target': 'new',
-    #         'context': ctx,
-    #     }
