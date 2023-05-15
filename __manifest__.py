@@ -17,6 +17,7 @@ At the end of the year, Milk Producers can check their yearly profits.
     'website': 'https://github.com/satishprajapati1/dairy',
     'data':[
         'security/ir.model.access.csv',
+        'security/groups.xml',
         'report/collection_report_template.xml',
         'data/collection_mail_template.xml',
         'data/cattle_type_data.xml',
