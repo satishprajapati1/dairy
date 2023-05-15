@@ -7,13 +7,15 @@
         <field name="model">collection.report</field>
         <field name="arch" type="xml">
             <form>
-                <group colspan="4">
+                <group>
                     <field name="date_from"/>
                     <field name="date_to"/>
                 </group>
+                <group>
+                    <field name="member_id"/>
+                </group>
                 <footer>
                     <button name="print_report" string="Print" type="object" class="btn-primary"/>
-<!--                    <button name="print_report_new" string="Preview Report" type="object" class="btn-primary"/>-->
                     <button string="Cancel" class="btn-secondary" special="cancel"/>
                 </footer>
             </form>

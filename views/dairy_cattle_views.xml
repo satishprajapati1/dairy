@@ -83,11 +83,6 @@
                         <separator/>
                         <filter string="Cattle Breed" name="cattle_breed_groupby" context="{'group_by': 'cattle_breed_id'}" />
                     </group>
-<!--                    <searchpanel>-->
-<!--                        <field name="cattle_type_id" string="Types" enable_counters="1"/>-->
-<!--                        <field name="cattle_breed_id" string="Breeds" enable_counters="1"/>-->
-<!--                        <field name="body_condition" string="Body Condition" enable_counters="1"/>-->
-<!--                    </searchpanel>-->
                 </search>
             </field>
         </record>

@@ -7,8 +7,8 @@
             <menuitem name="Collection" id="dairy_collection_menu" parent="dairy_root_menu"
                   action="dairy_collection_act_window" sequence="3"/>
             <menuitem name="Reporting" id="dairy_reporting_menu" parent="dairy_root_menu" sequence="4"/>
-                <menuitem id="collection_report_menu" name="Collection Report" parent="dairy_reporting_menu" action="collection_report_action"/>
-            <menuitem name="Configuration" id="dairy_config_menu" parent="dairy_root_menu" sequence="10"/>
+                <menuitem id="collection_report_menu" name="Collection Report" parent="dairy_reporting_menu" action="collection_report_action" groups="group_dairy_admin,group_dairy_manager,group_dairy_user"/>
+            <menuitem name="Configuration" id="dairy_config_menu" parent="dairy_root_menu" sequence="10" groups="group_dairy_admin,group_dairy_manager"/>
                 <menuitem name="Rate on Fat" id="collection_rate_menu" parent="dairy_config_menu"  action="collection_rate_main" sequence="1"/>
                 <menuitem name="Cattle Type" id="cattle_type_menu" parent="dairy_config_menu" action="cattle_type_act_window" sequence="3"/>
                 <menuitem name="Cattle Breed" id="cattle_breed_menu" parent="dairy_config_menu" action="cattle_breed_act_window" sequence="4"/>
