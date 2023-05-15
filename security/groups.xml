@@ -31,7 +31,7 @@
         <record model="ir.ui.menu" id="contacts.menu_contacts">
             <field name="groups_id" eval="[(3,ref('make_invisible'))]"/>
         </record>
-        <record id="dairy_user_rule" model="ir.rule">
+        <record id="dairy_member_user_rule" model="ir.rule">
             <field name="name">User</field>
             <field ref="model_dairy_member" name="model_id"/>
             <field name="domain_force">[('user_id', '=',user.id)]</field>
@@ -41,7 +41,7 @@
             <field name="perm_unlink" eval="0"/>
             <field name="groups" eval="[(4, ref('group_dairy_user'))]"/>
         </record>
-        <record id="dairy_manager_rule" model="ir.rule">
+        <record id="dairy_member_manager_rule" model="ir.rule">
             <field name="name">Manager</field>
             <field ref="model_dairy_member" name="model_id"/>
             <field name="domain_force">[(1, '=',1 )]</field>
@@ -51,9 +51,71 @@
             <field name="perm_unlink" eval="0"/>
             <field name="groups" eval="[(4, ref('group_dairy_manager'))]"/>
         </record>
-        <record id="dairy_admin_rule" model="ir.rule">
+        <record id="dairy_member_admin_rule" model="ir.rule">
             <field name="name">Admin</field>
             <field ref="model_dairy_member" name="model_id"/>
+            <field name="domain_force">[(1, '=',1 )]</field>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <field name="groups" eval="[(4, ref('group_dairy_admin'))]"/>
+        </record>
+
+        <record id="dairy_cattle_user_rule" model="ir.rule">
+            <field name="name">User</field>
+            <field ref="model_dairy_cattle" name="model_id"/>
+            <field name="domain_force">[('owner_id.user_id', '=',user.id)]</field>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_unlink" eval="0"/>
+            <field name="groups" eval="[(4, ref('group_dairy_user'))]"/>
+        </record>
+        <record id="dairy_cattle_manager_rule" model="ir.rule">
+            <field name="name">Manager</field>
+            <field ref="model_dairy_cattle" name="model_id"/>
+            <field name="domain_force">[(1, '=',1 )]</field>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <field name="groups" eval="[(4, ref('group_dairy_manager'))]"/>
+        </record>
+        <record id="dairy_cattle_admin_rule" model="ir.rule">
+            <field name="name">Admin</field>
+            <field ref="model_dairy_cattle" name="model_id"/>
+            <field name="domain_force">[(1, '=',1 )]</field>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <field name="groups" eval="[(4, ref('group_dairy_admin'))]"/>
+        </record>
+
+        <record id="dairy_collection_user_rule" model="ir.rule">
+            <field name="name">User</field>
+            <field ref="model_dairy_collection" name="model_id"/>
+            <field name="domain_force">[('member_id.user_id', '=',user.id)]</field>
+            <field name="perm_write" eval="0"/>
+            <field name="perm_create" eval="0"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_unlink" eval="0"/>
+            <field name="groups" eval="[(4, ref('group_dairy_user'))]"/>
+        </record>
+        <record id="dairy_collection_manager_rule" model="ir.rule">
+            <field name="name">Manager</field>
+            <field ref="model_dairy_collection" name="model_id"/>
+            <field name="domain_force">[(1, '=',1 )]</field>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_unlink" eval="0"/>
+            <field name="groups" eval="[(4, ref('group_dairy_manager'))]"/>
+        </record>
+        <record id="dairy_collection_admin_rule" model="ir.rule">
+            <field name="name">Admin</field>
+            <field ref="model_dairy_collection" name="model_id"/>
             <field name="domain_force">[(1, '=',1 )]</field>
             <field name="perm_write" eval="1"/>
             <field name="perm_create" eval="1"/>

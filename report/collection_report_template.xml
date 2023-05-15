@@ -1,5 +1,19 @@
 <odoo>
 
+    <record id="paperformat_collection_receipt" model="report.paperformat">
+        <field name="name">Collection Receipt</field>
+        <field name="default" eval="True"/>
+        <field name="format">custom</field>
+        <field name="page_height">57</field>
+        <field name="page_width">80</field>
+        <field name="orientation">Landscape</field>
+        <field name="margin_top">5</field>
+        <field name="margin_bottom">5</field>
+        <field name="margin_left">5</field>
+        <field name="margin_right">5</field>
+    </record>
+
+
     <record id="report_collection_details" model="ir.actions.report">
         <field name="name">Collection Report</field>
         <field name="model">dairy.collection</field>
@@ -8,102 +22,179 @@
         <field name="report_file">dairy.collection_report_pdf</field>
         <field name="binding_model_id" ref="dairy.model_dairy_collection"/>
         <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="dairy.paperformat_collection_receipt"/>
     </record>
 
+    <!--    <template id="collection_report_pdf">-->
+    <!--        <t t-call="web.basic_layout">-->
+    <!--            <div class="page">-->
+    <!--                <style>-->
+    <!--                    table {-->
+    <!--                    width: 100%;-->
+    <!--                    text-align: center;-->
+    <!--                    }-->
+    <!--                    #collection_data th, #collection_data td {-->
+    <!--                    border: 1px solid black;-->
+    <!--                    padding: 5px;-->
+    <!--                    }-->
+    <!--                    #collection_data th h5 {-->
+    <!--                    font-weight: 700;-->
+    <!--                    }-->
+    <!--                </style>-->
+    <!--                <center>-->
+    <!--                    <div>-->
+    <!--                        <h3 style="font-weight: 700;">Milk Collection Receipt-->
+    <!--                        </h3>-->
+    <!--                    </div>-->
+    <!--                    <br/>-->
+    <!--                    <div>-->
+    <!--                        <table id="collection_data">-->
+    <!--                            <tr>-->
+    <!--                                <th>-->
+    <!--                                    <h5>Date</h5>-->
+    <!--                                </th>-->
+    <!--                                <th>-->
+    <!--                                    <h5>Type</h5>-->
+    <!--                                </th>-->
+    <!--                                <th>-->
+    <!--                                    <h5>Quantity (Ltr)</h5>-->
+    <!--                                </th>-->
+    <!--                                <th>-->
+    <!--                                    <h5>Fat</h5>-->
+    <!--                                </th>-->
+    <!--                                <th>-->
+    <!--                                    <h5>Rate</h5>-->
+    <!--                                </th>-->
+    <!--                                <th>-->
+    <!--                                    <h5>Amount</h5>-->
+    <!--                                </th>-->
+    <!--                            </tr>-->
+    <!--&lt;!&ndash;                            <t t-if="data['collection_details']">&ndash;&gt;-->
+    <!--&lt;!&ndash;                                <t t-foreach="data['collection_details']" t-as="cd">&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <tr>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                        <td>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                            <h5>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                                <t t-esc="cd['date']"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                            </h5>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                        </td>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                        <td>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                            <h5>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                                <t t-esc="cd['cattle_type_id']"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                            </h5>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                        </td>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                        <td>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                            <h5>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                                <t t-esc="cd['qty']"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                            </h5>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                        </td>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                        <td>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                            <h5>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                                <t t-esc="cd['fat']"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                            </h5>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                        </td>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                        <td>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                            <h5>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                                <t t-esc="cd['rate']"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                            </h5>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                        </td>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                        <td>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                            <h5>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                                <t t-esc="cd['amt']"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                            </h5>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                        </td>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    </tr>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                </t>&ndash;&gt;-->
+    <!--&lt;!&ndash;                            </t>&ndash;&gt;-->
+    <!--&lt;!&ndash;                            <t t-if="not data['collection_details']">&ndash;&gt;-->
+    <!--&lt;!&ndash;                                <tr>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    <td colspan="5">&ndash;&gt;-->
+    <!--&lt;!&ndash;                                        <h5>No records found!</h5>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                    </td>&ndash;&gt;-->
+    <!--&lt;!&ndash;                                </tr>&ndash;&gt;-->
+    <!--&lt;!&ndash;                            </t>&ndash;&gt;-->
+    <!--                        </table>-->
+    <!--                    </div>-->
+    <!--                </center>-->
+    <!--            </div>-->
+    <!--        </t>-->
+    <!--    </template>-->
+
     <template id="collection_report_pdf">
-        <t t-call="web.basic_layout">
-            <div class="page">
-                <style>
-                    table {
-                    width: 100%;
-                    text-align: center;
-                    }
-                    #collection_data th, #collection_data td {
-                    border: 1px solid black;
-                    padding: 5px;
-                    }
-                    #collection_data th h5 {
-                    font-weight: 700;
-                    }
-                </style>
-                <center>
-                    <div>
-                        <h3 style="font-weight: 700;">Milk Collection Report (
-<!--                            <t t-esc="data['start_date']"/>-->
-<!--                            to<t t-esc="data['end_date']"/>)-->
-                        </h3>
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <div class="page">
+                    <div class="oe_structure"/>
+                    <div class="text-center">
+                        <h4>Milk Collection Receipt</h4>
                     </div>
-                    <br/>
-                    <div>
-                        <table id="collection_data">
-                            <tr>
-                                <th>
-                                    <h5>Date</h5>
-                                </th>
-                                <th>
-                                    <h5>Type</h5>
-                                </th>
-                                <th>
-                                    <h5>Quantity (Ltr)</h5>
-                                </th>
-                                <th>
-                                    <h5>Fat</h5>
-                                </th>
-                                <th>
-                                    <h5>Rate</h5>
-                                </th>
-                                <th>
-                                    <h5>Amount</h5>
-                                </th>
-                            </tr>
-<!--                            <t t-if="data['collection_details']">-->
-<!--                                <t t-foreach="data['collection_details']" t-as="cd">-->
-<!--                                    <tr>-->
-<!--                                        <td>-->
-<!--                                            <h5>-->
-<!--                                                <t t-esc="cd['date']"/>-->
-<!--                                            </h5>-->
-<!--                                        </td>-->
-<!--                                        <td>-->
-<!--                                            <h5>-->
-<!--                                                <t t-esc="cd['cattle_type_id']"/>-->
-<!--                                            </h5>-->
-<!--                                        </td>-->
-<!--                                        <td>-->
-<!--                                            <h5>-->
-<!--                                                <t t-esc="cd['qty']"/>-->
-<!--                                            </h5>-->
-<!--                                        </td>-->
-<!--                                        <td>-->
-<!--                                            <h5>-->
-<!--                                                <t t-esc="cd['fat']"/>-->
-<!--                                            </h5>-->
-<!--                                        </td>-->
-<!--                                        <td>-->
-<!--                                            <h5>-->
-<!--                                                <t t-esc="cd['rate']"/>-->
-<!--                                            </h5>-->
-<!--                                        </td>-->
-<!--                                        <td>-->
-<!--                                            <h5>-->
-<!--                                                <t t-esc="cd['amt']"/>-->
-<!--                                            </h5>-->
-<!--                                        </td>-->
-<!--                                    </tr>-->
-<!--                                </t>-->
-<!--                            </t>-->
-<!--                            <t t-if="not data['collection_details']">-->
-<!--                                <tr>-->
-<!--                                    <td colspan="5">-->
-<!--                                        <h5>No records found!</h5>-->
-<!--                                    </td>-->
-<!--                                </tr>-->
-<!--                            </t>-->
-                        </table>
-                    </div>
-                </center>
-            </div>
+                    <table>
+                        <tr>
+                            <td>Date</td>
+                            <td>:</td>
+                            <td>
+                                <t t-if="doc.collection_date">
+                                    <t t-esc="doc.collection_date"/>
+                                </t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Member</td>
+                            <td>:</td>
+                            <td>
+                                <t t-if="doc.member_id">
+                                    <t t-esc="doc.member_id.name"/>
+                                </t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Cattle Type</td>
+                            <td>:</td>
+                            <td>
+                                <t t-if="doc.cattle_type_id">
+                                    <t t-esc="doc.cattle_type_id.name"/>
+                                </t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Quantity (Ltr)</td>
+                            <td>:</td>
+                            <td>
+                                <t t-if="doc.qty">
+                                    <t t-esc="doc.qty"/>
+                                </t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Fat</td>
+                            <td>:</td>
+                            <td>
+                                <t t-if="doc.fat">
+                                    <t t-esc="doc.fat"/>
+                                </t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Rate</td>
+                            <td>:</td>
+                            <td>
+                                <t t-if="doc.rate">
+                                    <t t-esc="doc.rate"/>
+                                </t>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Amount</td>
+                            <td>:</td>
+                            <td>
+                                <t t-if="doc.amt">
+                                    <t t-esc="doc.amt"/>
+                                </t>
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+            </t>
         </t>
     </template>
-
 </odoo>

@@ -18,15 +18,16 @@ class Collection(models.Model):
     rate = fields.Float(compute='_compute_rate',string="Rate (per ltr)",store=True)
     amt = fields.Float(compute='_compute_amt',string="Amount",store=True)
 
+
     @api.depends("fat_rate","fat")
     def _compute_rate(self):
         for record in self:
-            record.rate = record.fat_rate * record.fat
+            record.rate = (record.fat_rate * record.fat)
 
-    @api.depends("fat_rate","fat","qty")
+    @api.depends("rate","qty")
     def _compute_amt(self):
         for record in self:
-            record.amt = ((record.fat * record.qty) * record.fat_rate)
+            record.amt = (record.qty * record.rate)
 
     @api.onchange('cattle_type_id')
     @api.depends('cattle_type_id')
