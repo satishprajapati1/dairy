@@ -1,5 +1,5 @@
 
-#  Co-Operative Dairy Management
+#  Co-Operative Dairy Management in Odoo
 
 Co-operative Dairy Management is a system to manage Milk Collections, Member Information, Cattle Information in a suitable way. 
 
