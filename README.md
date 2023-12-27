@@ -9,15 +9,13 @@ They get alerts regarding collections.
 
 At the end of the year, Milk Producers can check their yearly profits.
 
-
+This Project is part of my MCA Course in Gujarat Vidyapith.
 
 
 ## Author
 
 - [@satishprajapati1](https://www.github.com/satishprajapati1)
 ## 🚀 About Me
-I'm a Odoo Trainee...
-
-Currenty Studying MCA in Gujarat Vidyapith...
+I'm a Odoo Developer in Ahmedabad.
 
 
