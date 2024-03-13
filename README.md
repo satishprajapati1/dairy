@@ -9,7 +9,7 @@ They get alerts regarding collections.
 
 At the end of the year, Milk Producers can check their yearly profits.
 
-This Project is part of my MCA Course in Gujarat Vidyapith.
+This Project is part of my MCA Course at Gujarat Vidyapith.
 
 
 ## Author
